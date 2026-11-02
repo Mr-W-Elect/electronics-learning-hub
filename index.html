@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Electronics Learning Hub — learn, build, test, and troubleshoot.">
+<title>Electronics Learning Hub</title>
+<style>
+:root{--navy:#101d32;--navy2:#172943;--blue:#3277e6;--cyan:#54d4e8;--ink:#172338;--muted:#64748b;--paper:#f4f7fb;--line:#e2e8f0;--white:#fff;--green:#13866b;--amber:#d18a19}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}.shell{display:flex;min-height:100vh}.sidebar{width:250px;background:var(--navy);color:#d9e5f5;padding:24px 16px;position:fixed;inset:0 auto 0 0;display:flex;flex-direction:column;z-index:5}.brand{display:flex;align-items:center;gap:11px;padding:4px 10px 26px}.brand-mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--cyan),var(--blue));display:grid;place-items:center;color:#08182c;font-size:22px;font-weight:900}.brand strong{display:block;color:#fff;font-size:14px;letter-spacing:.04em}.brand small{color:#91a8c5;font-size:11px}.nav-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#7890ae;padding:13px 12px 7px}.nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;color:#bdcce0;margin:2px 0;font-size:13px}.nav a:hover,.nav a.active{background:#223956;color:#fff}.nav .ico{width:19px;text-align:center;font-size:16px}.sidebar-foot{margin-top:auto;padding:14px 12px;color:#8197b3;font-size:11px;border-top:1px solid #2a3d57}.main{margin-left:250px;width:calc(100% - 250px)}.topbar{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px;position:sticky;top:0;z-index:4}.crumb{font-size:13px;color:var(--muted)}.top-actions{display:flex;align-items:center;gap:12px}.pill{font-size:11px;font-weight:700;color:#176b59;background:#e3f7f1;border-radius:30px;padding:6px 10px}.avatar{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#e7efff;color:#245db7;font-weight:800}.content{max-width:1220px;margin:auto;padding:30px 34px 60px}.eyebrow{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);font-weight:800}.hero{background:linear-gradient(115deg,#142945,#1d4264 65%,#176477);border-radius:22px;color:#fff;padding:34px 38px;display:grid;grid-template-columns:1.3fr .7fr;gap:20px;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;width:320px;height:320px;border:1px solid #ffffff20;border-radius:50%;right:4%;top:-115px;box-shadow:0 0 0 35px #ffffff08,0 0 0 75px #ffffff06}.hero h1{font-size:clamp(28px,4vw,42px);line-height:1.08;margin:10px 0 12px;max-width:550px}.hero p{color:#c5d6e8;max-width:550px;margin:0 0 22px}.hero .eyebrow{color:#7de3ed}.btn{border:0;border-radius:9px;padding:10px 15px;background:var(--blue);color:white;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn:hover{filter:brightness(1.07)}.btn.light{background:#fff;color:#183454}.btn.ghost{background:#eaf1fb;color:#285b9e}.hero-art{position:relative;z-index:1;display:grid;place-items:center;min-height:170px}.chip{width:150px;height:150px;border:1px solid #8be5ed88;border-radius:28px;transform:rotate(9deg);background:linear-gradient(145deg,#ffffff20,#ffffff05);display:grid;place-items:center;box-shadow:0 18px 45px #07172d66}.chip span{font-size:60px;transform:rotate(-9deg)}.section-head{display:flex;justify-content:space-between;align-items:end;margin:30px 0 14px}.section-head h2{margin:3px 0 0;font-size:20px}.section-head p{margin:0;color:var(--muted);font-size:12px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:19px;box-shadow:0 3px 12px #12233b05}.feature{min-height:155px;display:flex;flex-direction:column}.feature-top{display:flex;align-items:center;justify-content:space-between}.feature-icon{width:40px;height:40px;border-radius:12px;background:#eaf2ff;display:grid;place-items:center;font-size:20px}.tag{font-size:10px;color:#55708f;background:#f0f4f9;border-radius:30px;padding:4px 8px}.card h3{font-size:15px;margin:14px 0 5px}.card p{font-size:12px;color:var(--muted);margin:0 0 12px}.card-link{margin-top:auto;color:#2767c5;font-weight:750;font-size:12px}.split{display:grid;grid-template-columns:1.15fr .85fr;gap:15px}.quick-list{display:grid;gap:0}.quick{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.quick:last-child{border:0}.quick-icon{width:35px;height:35px;border-radius:10px;background:#f0f5fc;display:grid;place-items:center}.quick strong{font-size:12px;display:block}.quick small{color:var(--muted);font-size:11px}.panel-title{font-size:15px;margin:0 0 5px}.panel-sub{color:var(--muted);font-size:12px;margin:0 0 12px}.activity{background:linear-gradient(135deg,#e8f7f8,#f0f5ff);border:1px solid #d8ebf2}.activity .big{font-size:28px}.activity h3{margin:5px 0}.activity p{color:#53677e}.page{display:none}.page.active{display:block}.page-intro{margin:4px 0 20px}.page-intro h1{font-size:28px;margin:3px 0}.page-intro p{color:var(--muted);margin:0}.tool-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:grid;gap:5px;margin:12px 0}.field label{font-size:12px;font-weight:700;color:#43546b}.field input,.field select{width:100%;border:1px solid #d5deea;border-radius:9px;padding:10px 11px;background:#fff;color:var(--ink)}.result{background:#edf7f5;border:1px solid #cfece4;border-radius:12px;padding:14px;margin-top:12px}.result strong{font-size:23px;color:#08765d}.muted{color:var(--muted);font-size:12px}.game-question{font-size:19px;font-weight:800;margin:10px 0}.options{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:14px 0}.option{border:1px solid var(--line);background:#fff;border-radius:10px;padding:12px;text-align:left;cursor:pointer}.option:hover{border-color:var(--blue);background:#f5f8ff}.feedback{font-weight:700;margin-top:10px;min-height:24px}.swatches{display:flex;gap:5px;margin:14px 0}.swatch{width:34px;height:62px;border-radius:6px;border:1px solid #0002}.resource{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}.resource:last-child{border:0}.resource strong{font-size:13px}.resource small{display:block;color:var(--muted);font-size:11px}.resource a{color:#2868c4;font-weight:700;font-size:12px}.notice{background:#fff8e8;border:1px solid #f2dfb5;color:#73541b;border-radius:10px;padding:12px;font-size:12px;margin-top:14px}.footer{text-align:center;color:#8794a6;font-size:11px;padding:25px 0}.mobile-menu{display:none}
+@media(max-width:900px){.sidebar{width:215px}.main{margin-left:215px;width:calc(100% - 215px)}.grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr .5fr}.content{padding:24px}}
+@media(max-width:680px){.sidebar{transform:translateX(-100%);transition:.2s}.sidebar.open{transform:translateX(0)}.main{margin:0;width:100%}.topbar{padding:0 17px}.mobile-menu{display:inline-flex;border:0;background:none;font-size:22px}.content{padding:18px 15px 45px}.hero{padding:25px;grid-template-columns:1fr}.hero-art{display:none}.grid,.split,.tool-layout{grid-template-columns:1fr}.section-head{align-items:start;gap:8px;flex-direction:column}.top-actions .pill{display:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="brand-mark">⌁</div><div><strong>ELECTRONICS HUB</strong><small>LEARN · BUILD · TEST</small></div></div>
+  <div class="nav-label">Workspace</div>
+  <nav class="nav">
+    <a href="#home" class="active" data-page="home"><span class="ico">⌂</span> Home</a>
+    <a href="#lessons" data-page="lessons"><span class="ico">▤</span> Learning resources</a>
+    <a href="#games" data-page="games"><span class="ico">♜</span> Games & challenges</a>
+    <a href="#calculators" data-page="calculators"><span class="ico">∑</span> Calculators</a>
+    <a href="#quizzes" data-page="quizzes"><span class="ico">☑</span> Quizzes</a>
+    <a href="#videos" data-page="videos"><span class="ico">▷</span> Video library</a>
+    <a href="#projects" data-page="projects"><span class="ico">⚒</span> Projects & labs</a>
+  </nav>
+  <div class="nav-label">Reference desk</div>
+  <nav class="nav">
+    <a href="#reference" data-page="reference"><span class="ico">▧</span> Quick references</a>
+  </nav>
+  <div class="sidebar-foot">A classroom resource for curious minds.<br>Teacher-editable starter edition</div>
+</aside>
+<main class="main">
+<header class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="mobile-menu" id="menuBtn" aria-label="Open navigation">☰</button><span class="crumb">Student workspace / <strong id="crumb">Home</strong></span></div><div class="top-actions"><span class="pill">● LEARNING HUB</span><div class="avatar">E</div></div></header>
+<div class="content">
+<section class="page active" id="home">
+  <div class="hero"><div><div class="eyebrow">Your electronics workshop starts here</div><h1>Think like a technician. Build like an engineer.</h1><p>Explore electronics concepts, sharpen your troubleshooting skills, and turn what you learn into real circuits and projects.</p><button class="btn light" onclick="showPage('lessons')">Explore learning resources →</button></div><div class="hero-art"><div class="chip"><span>⌁</span></div></div></div>
+  <div class="section-head"><div><div class="eyebrow">Explore the hub</div><h2>What do you want to work on?</h2></div><p>Choose a learning area to get started.</p></div>
+  <div class="grid">
+    <article class="card feature"><div class="feature-top"><div class="feature-icon">📘</div><span class="tag">LEARN</span></div><h3>Learning resources</h3><p>Review core concepts, components, symbols, and circuit fundamentals.</p><a class="card-link" href="#lessons" data-page="lessons">Browse lessons →</a></article>
+    <article class="card feature"><div class="feature-top"><div class="feature-icon">🎮</div><span class="tag">PRACTICE</span></div><h3>Games & challenges</h3><p>Build speed and confidence with resistor and component challenges.</p><a class="card-link" href="#games" data-page="games">Play a challenge →</a></article>
+    <article class="card feature"><div class="feature-top"><div class="feature-icon">∑</div><span class="tag">CALCULATE</span></div><h3>Electronics calculators</h3><p>Practice voltage, current, resistance, and power calculations.</p><a class="card-link" href="#calculators" data-page="calculators">Open calculators →</a></article>
+    <article class="card feature"><div class="feature-top"><div class="feature-icon">☑</div><span class="tag">CHECK YOURSELF</span></div><h3>Knowledge checks</h3><p>Test your understanding with short practice questions.</p><a class="card-link" href="#quizzes" data-page="quizzes">Take a quiz →</a></article>
+    <article class="card feature"><div class="feature-top"><div class="feature-icon">▶</div><span class="tag">WATCH</span></div><h3>Video library</h3><p>Find demonstrations and visual explanations of important skills.</p><a class="card-link" href="#videos" data-page="videos">View videos →</a></article>
+    <article class="card feature"><div class="feature-top"><div class="feature-icon">🛠</div><span class="tag">MAKE</span></div><h3>Projects & labs</h3><p>Connect classroom learning to hands-on electronics work.</p><a class="card-link" href="#projects" data-page="projects">Explore projects →</a></article>
+  </div>
+  <div class="section-head"><div><div class="eyebrow">Start here</div><h2>Workshop essentials</h2></div></div>
+  <div class="split">
+    <div class="card"><h3 class="panel-title">Quick-access reference desk</h3><p class="panel-sub">Useful concepts to keep close while working in the lab.</p><div class="quick-list">
+      <div class="quick"><div class="quick-icon">⚡</div><div><strong>Ohm's Law</strong><small>Voltage, current, and resistance</small></div></div>
+      <div class="quick"><div class="quick-icon">〰</div><div><strong>Series & parallel circuits</strong><small>Understand paths and equivalent resistance</small></div></div>
+      <div class="quick"><div class="quick-icon">◉</div><div><strong>Meter safety</strong><small>Choose the correct function and range</small></div></div>
+    </div></div>
+    <div class="card activity"><div class="eyebrow">Try it now</div><div class="big">⚡</div><h3>Can you solve the circuit?</h3><p>A 9 V source is connected across a 1 kΩ resistor. What current should you expect?</p><button class="btn" onclick="showPage('calculators')">Use the Ohm's Law tool →</button></div>
+  </div>
+</section>
+
+<section class="page" id="lessons"><div class="page-intro"><div class="eyebrow">Build your knowledge</div><h1>Learning resources</h1><p>Use these topic areas as a starting point for class notes, lessons, and reference material.</p></div>
+  <div class="grid">
+    <article class="card"><div class="feature-icon">⚡</div><h3>Electricity fundamentals</h3><p>Charge, voltage, current, resistance, power, and energy.</p><span class="tag">FOUNDATIONS</span></article>
+    <article class="card"><div class="feature-icon">∿</div><h3>AC & DC circuits</h3><p>Waveforms, frequency, RMS, polarity, and basic circuit behavior.</p><span class="tag">CIRCUITS</span></article>
+    <article class="card"><div class="feature-icon">▥</div><h3>Electronic components</h3><p>Resistors, capacitors, inductors, diodes, transistors, and ICs.</p><span class="tag">COMPONENTS</span></article>
+    <article class="card"><div class="feature-icon">⌁</div><h3>Schematic symbols</h3><p>Read and interpret common electronic symbols and diagrams.</p><span class="tag">READING DIAGRAMS</span></article>
+    <article class="card"><div class="feature-icon">▦</div><h3>Digital electronics</h3><p>Binary numbers, logic gates, truth tables, and digital signals.</p><span class="tag">DIGITAL</span></article>
+    <article class="card"><div class="feature-icon">⌘</div><h3>Microcontrollers</h3><p>Explore Arduino-style boards, inputs, outputs, and simple code.</p><span class="tag">EMBEDDED SYSTEMS</span></article>
+  </div>
+  <div class="notice">Teacher note: Add your own lesson links, class slides, and curriculum documents here. This starter site does not yet contain a student login or learning-management system.</div>
+</section>
+
+<section class="page" id="games"><div class="page-intro"><div class="eyebrow">Practice by playing</div><h1>Games & challenges</h1><p>Short practice activities for building electronics fluency.</p></div>
+  <div class="tool-layout">
+    <div class="card"><h3>Resistor color-code challenge</h3><p class="panel-sub">Read the first two significant digits and multiplier. This starter game uses a 4-band resistor.</p><div class="muted" id="round">Question 1</div><div class="swatches" id="bands"></div><div class="game-question" id="resQuestion">What is the resistance?</div><div class="options" id="resOptions"></div><div class="feedback" id="resFeedback" aria-live="polite"></div><button class="btn ghost" onclick="newResistor()">Next resistor ↻</button><div class="muted" style="margin-top:12px">Score: <strong id="resScore">0</strong> correct</div></div>
+    <div class="card"><h3>Component quick match</h3><p class="panel-sub">Choose the best description for each component.</p><div class="game-question" id="compQuestion">What does a capacitor primarily do?</div><div class="options" id="compOptions"></div><div class="feedback" id="compFeedback" aria-live="polite"></div><button class="btn ghost" onclick="newComponent()">Next question ↻</button></div>
+  </div>
+</section>
+
+<section class="page" id="calculators"><div class="page-intro"><div class="eyebrow">Tools for the workbench</div><h1>Electronics calculators</h1><p>Enter any two known values to calculate the third using Ohm's Law.</p></div>
+  <div class="tool-layout"><div class="card"><h3>Ohm's Law calculator</h3><p class="panel-sub">Enter voltage, current, or resistance. Leave the value you want to solve blank.</p>
+    <div class="field"><label for="voltage">Voltage (V)</label><input id="voltage" type="number" min="0" step="any" placeholder="e.g. 12"></div>
+    <div class="field"><label for="current">Current (A)</label><input id="current" type="number" min="0" step="any" placeholder="e.g. 0.02"></div>
+    <div class="field"><label for="resistance">Resistance (Ω)</label><input id="resistance" type="number" min="0" step="any" placeholder="e.g. 600"></div>
+    <button class="btn" onclick="calculateOhms()">Calculate</button> <button class="btn ghost" onclick="clearOhms()">Clear</button><div class="result" id="ohmResult" aria-live="polite"><span class="muted">Your result will appear here.</span></div>
+  </div><div class="card"><h3>Power reference</h3><p class="panel-sub">Once you know voltage and current, calculate electrical power.</p>
+    <div class="field"><label for="powerV">Voltage (V)</label><input id="powerV" type="number" min="0" step="any" placeholder="e.g. 9"></div>
+    <div class="field"><label for="powerI">Current (A)</label><input id="powerI" type="number" min="0" step="any" placeholder="e.g. 0.5"></div>
+    <button class="btn" onclick="calculatePower()">Calculate power</button><div class="result" id="powerResult"><span class="muted">P = V × I</span></div>
+    <div class="notice">These tools are for learning and low-voltage classroom calculations. Always follow lab safety procedures and component ratings.</div>
+  </div></div>
+</section>
+
+<section class="page" id="quizzes"><div class="page-intro"><div class="eyebrow">Check your understanding</div><h1>Knowledge checks</h1><p>Try this short electronics fundamentals quiz. Your score appears when you finish.</p></div>
+  <div class="card" style="max-width:760px"><div class="eyebrow" id="quizProgress">QUESTION 1 OF 5</div><h2 class="game-question" id="quizQuestion"></h2><div id="quizOptions" class="options"></div><div class="feedback" id="quizFeedback" aria-live="polite"></div><button class="btn" id="quizNext" onclick="nextQuiz()" disabled>Next question →</button><div id="quizResult" class="result" style="display:none"></div></div>
+</section>
+
+<section class="page" id="videos"><div class="page-intro"><div class="eyebrow">Watch & learn</div><h1>Video library</h1><p>A curated space for demonstrations, walkthroughs, and visual explanations.</p></div>
+  <div class="card"><h3>Suggested video topics</h3>
+    <div class="resource"><div><strong>Using a digital multimeter</strong><small>Measuring voltage, resistance, and continuity safely</small></div><a href="https://www.youtube.com/results?search_query=how+to+use+a+digital+multimeter+electronics" target="_blank" rel="noopener">Find videos ↗</a></div>
+    <div class="resource"><div><strong>Reading resistor color codes</strong><small>Identify resistor values and tolerances</small></div><a href="https://www.youtube.com/results?search_query=resistor+color+code+tutorial" target="_blank" rel="noopener">Find videos ↗</a></div>
+    <div class="resource"><div><strong>How to solder electronics</strong><small>Through-hole soldering technique and safety</small></div><a href="https://www.youtube.com/results?search_query=through+hole+soldering+tutorial" target="_blank" rel="noopener">Find videos ↗</a></div>
+    <div class="resource"><div><strong>Understanding breadboards</strong><small>Power rails, connected rows, and circuit layout</small></div><a href="https://www.youtube.com/results?search_query=breadboard+basics+electronics" target="_blank" rel="noopener">Find videos ↗</a></div>
+    <div class="resource"><div><strong>Oscilloscope basics</strong><small>Waveforms, time base, and volts per division</small></div><a href="https://www.youtube.com/results?search_query=oscilloscope+basics+for+beginners" target="_blank" rel="noopener">Find videos ↗</a></div>
+  </div><div class="notice">These links open YouTube search results rather than preselected videos. A teacher should review and approve videos before assigning them to students.</div>
+</section>
+
+<section class="page" id="projects"><div class="page-intro"><div class="eyebrow">Learn by doing</div><h1>Projects & labs</h1><p>Use these project starters to connect theory with hands-on skills.</p></div>
+  <div class="grid">
+    <article class="card"><span class="tag">BEGINNER</span><h3>LED series circuit</h3><p>Build a simple LED circuit and calculate an appropriate current-limiting resistor.</p><p><strong>Skills:</strong> polarity, Ohm's Law, schematic reading.</p></article>
+    <article class="card"><span class="tag">BEGINNER</span><h3>Resistor network</h3><p>Build series and parallel resistor networks and compare calculated and measured values.</p><p><strong>Skills:</strong> equivalent resistance, meter use.</p></article>
+    <article class="card"><span class="tag">INTERMEDIATE</span><h3>Capacitor charge & discharge</h3><p>Observe how a capacitor charges and discharges through a resistor in a low-voltage circuit.</p><p><strong>Skills:</strong> time constants, graphing, measurement.</p></article>
+    <article class="card"><span class="tag">INTERMEDIATE</span><h3>Transistor switch</h3><p>Use a transistor as an electronic switch to control a suitable low-voltage load.</p><p><strong>Skills:</strong> semiconductor basics, biasing, datasheets.</p></article>
+    <article class="card"><span class="tag">ADVANCED</span><h3>Logic gate tester</h3><p>Test basic logic gates and verify outputs against truth tables.</p><p><strong>Skills:</strong> digital logic, truth tables, troubleshooting.</p></article>
+    <article class="card"><span class="tag">ADVANCED</span><h3>Microcontroller sensor</h3><p>Read a sensor and use the data to control an output on a microcontroller board.</p><p><strong>Skills:</strong> inputs, outputs, coding, calibration.</p></article>
+  </div><div class="notice">Projects are planning prompts, not complete build instructions. Add your approved schematics, parts lists, voltage/current limits, risk assessments, and teacher-supervised procedures before student use.</div>
+</section>
+
+<section class="page" id="reference"><div class="page-intro"><div class="eyebrow">At-a-glance help</div><h1>Quick references</h1><p>Core formulas and trusted starting points for electronics research.</p></div>
+  <div class="grid">
+    <article class="card"><h3>Ohm's Law</h3><p style="font-size:20px;color:#1c5da9;font-weight:800">V = I × R</p><p>Voltage = Current × Resistance</p></article>
+    <article class="card"><h3>Electrical power</h3><p style="font-size:20px;color:#1c5da9;font-weight:800">P = V × I</p><p>Power = Voltage × Current</p></article>
+    <article class="card"><h3>Series resistance</h3><p style="font-size:20px;color:#1c5da9;font-weight:800">Rₜ = R₁ + R₂ + …</p><p>Add resistances in a series path.</p></article>
+    <article class="card"><h3>Parallel resistance</h3><p style="font-size:20px;color:#1c5da9;font-weight:800">1/Rₜ = 1/R₁ + 1/R₂ + …</p><p>For two resistors: Rₜ = (R₁R₂)/(R₁+R₂).</p></article>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>External reference tools</h3>
+    <div class="resource"><div><strong>All About Circuits</strong><small>Textbook-style explanations, worksheets, and reference material</small></div><a href="https://www.allaboutcircuits.com/" target="_blank" rel="noopener">Open ↗</a></div>
+    <div class="resource"><div><strong>Falstad Circuit Simulator</strong><small>Interactive circuit simulation in a browser</small></div><a href="https://falstad.com/circuit/" target="_blank" rel="noopener">Open ↗</a></div>
+    <div class="resource"><div><strong>Tinkercad Circuits</strong><small>Browser-based circuit and Arduino-style simulation</small></div><a href="https://www.tinkercad.com/circuits" target="_blank" rel="noopener">Open ↗</a></div>
+    <div class="resource"><div><strong>KiCad</strong><small>Open-source electronic design automation tools</small></div><a href="https://www.kicad.org/" target="_blank" rel="noopener">Open ↗</a></div>
+    <div class="resource"><div><strong>Datasheets (manufacturer search)</strong><small>Always verify pinouts, ratings, and operating limits using the manufacturer's datasheet</small></div><a href="https://www.digikey.com/en/resources/datasheets" target="_blank" rel="noopener">Browse ↗</a></div>
+  </div>
+</section>
+<div class="footer">ELECTRONICS LEARNING HUB · Teacher-managed classroom resource · Starter edition</div>
+</div></main></div>
+<script>
+const pages=['home','lessons','games','calculators','quizzes','videos','projects','reference'];
+function showPage(id){pages.forEach(p=>document.getElementById(p).classList.toggle('active',p===id));document.querySelectorAll('[data-page]').forEach(a=>a.classList.toggle('active',a.dataset.page===id));document.getElementById('crumb').textContent=({home:'Home',lessons:'Learning resources',games:'Games & challenges',calculators:'Calculators',quizzes:'Quizzes',videos:'Video library',projects:'Projects & labs',reference:'Quick references'})[id];document.getElementById('sidebar').classList.remove('open');window.location.hash=id;window.scrollTo(0,0)}
+document.querySelectorAll('[data-page]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showPage(a.dataset.page)}));
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('sidebar').classList.toggle('open'));
+if(location.hash&&pages.includes(location.hash.slice(1)))showPage(location.hash.slice(1));
+function calculateOhms(){let v=parseFloat(document.getElementById('voltage').value),i=parseFloat(document.getElementById('current').value),r=parseFloat(document.getElementById('resistance').value);let n=[v,i,r].filter(Number.isFinite).length;let out=document.getElementById('ohmResult');if(n!==2||[v,i,r].some(x=>Number.isFinite(x)&&x<0)){out.innerHTML='<span class="muted">Enter exactly two non-negative values to solve for the third.</span>';return}let msg='';if(!Number.isFinite(v)){if(i===0){msg='Current cannot be zero when solving voltage from resistance.'}else{v=i*r;document.getElementById('voltage').value=fmt(v);msg='Voltage (V) = I × R'}}else if(!Number.isFinite(i)){if(r===0){msg='Resistance cannot be zero when solving current.'}else{i=v/r;document.getElementById('current').value=fmt(i);msg='Current (A) = V ÷ R'}}else{if(i===0){msg='Current cannot be zero when solving resistance.'}else{r=v/i;document.getElementById('resistance').value=fmt(r);msg='Resistance (Ω) = V ÷ I'}}out.innerHTML=msg?'<strong>'+fmt(Number.isFinite(v)?v:Number.isFinite(i)?i:r)+'</strong><div class="muted">'+msg+'</div>':'<span class="muted">Check your values.</span>'}
+function fmt(n){return Number(n.toPrecision(5)).toString()}
+function clearOhms(){['voltage','current','resistance'].forEach(id=>document.getElementById(id).value='');document.getElementById('ohmResult').innerHTML='<span class="muted">Your result will appear here.</span>'}
+function calculatePower(){let v=parseFloat(powerV.value),i=parseFloat(powerI.value);powerResult.innerHTML=Number.isFinite(v)&&Number.isFinite(i)&&v>=0&&i>=0?'<strong>'+fmt(v*i)+' W</strong><div class="muted">P = V × I</div>':'<span class="muted">Enter non-negative voltage and current values.</span>'}
+const colors=[['Black','#171717',0],['Brown','#8a4b20',1],['Red','#d83232',2],['Orange','#f18b27',3],['Yellow','#f5d547',4],['Green','#25844c',5],['Blue','#2869c7',6],['Violet','#8149a8',7],['Gray','#9299a3',8],['White','#f7f7f7',9]];
+let resistorAnswer=0,resScore=0,resRound=0;
+function newResistor(){resRound++;let a=Math.floor(Math.random()*10),b=Math.floor(Math.random()*10),m=Math.floor(Math.random()*6);resistorAnswer=(a*10+b)*Math.pow(10,m);let bandNames=[colors[a],colors[b],colors[Math.min(m,9)],['Gold','#c69b35',5]];bands.innerHTML=bandNames.map(c=>'<div class="swatch" title="'+c[0]+'" style="background:'+c[1]+'"></div>').join('');round.textContent='Question '+resRound;let vals=[resistorAnswer,resistorAnswer*2,resistorAnswer/10,resistorAnswer+Math.pow(10,m)];let opts=[...new Set(vals)].sort(()=>Math.random()-.5);if(!opts.includes(resistorAnswer))opts[0]=resistorAnswer;resOptions.innerHTML=opts.map(v=>'<button class="option" onclick="checkResistor('+v+')">'+formatOhms(v)+'</button>').join('');resFeedback.textContent='';}
+function formatOhms(v){if(v>=1e6)return fmt(v/1e6)+' MΩ';if(v>=1e3)return fmt(v/1e3)+' kΩ';return fmt(v)+' Ω'}
+function checkResistor(v){if(v===resistorAnswer){resFeedback.textContent='Correct! Nice work.';resFeedback.style.color='var(--green)';resScore++;resScoreEl.textContent=resScore}else{resFeedback.textContent='Not quite. Review the two digits and multiplier.';resFeedback.style.color='#b45309'}[...resOptions.querySelectorAll('button')].forEach(b=>b.disabled=true)}
+const resScoreEl=document.getElementById('resScore');
+const comps=[['What does a capacitor primarily do?',['Stores energy in an electric field','Limits current in all conditions','Emits light','Amplifies current'],0],['Which component allows current mainly in one direction?',['Resistor','Diode','Capacitor','Inductor'],1],['What is the usual unit of resistance?',['Volt','Ampere','Ohm','Watt'],2],['Which instrument measures voltage?',['Digital multimeter','Soldering iron','Function generator only','Wire stripper'],0]];
+let compIndex=0;function newComponent(){let q=comps[compIndex%comps.length];compIndex++;compQuestion.textContent=q[0];compOptions.innerHTML=q[1].map((o,i)=>'<button class="option" onclick="checkComp('+i+')">'+o+'</button>').join('');compFeedback.textContent=''}
+function checkComp(i){let q=comps[(compIndex-1)%comps.length];compFeedback.textContent=i===q[2]?'Correct!':'Try again. Think about the component’s function.';compFeedback.style.color=i===q[2]?'var(--green)':'#b45309'}
+const quiz=[['What is the unit of electric current?',['Volt','Ampere','Ohm','Watt'],1],['Which formula represents Ohm’s Law?',['V = I × R','P = V + I','R = V × I','I = V × R'],0],['In a series circuit, which quantity is the same through each component?',['Voltage','Resistance','Current','Power'],2],['What does a diode do?',['Stores charge','Primarily conducts in one direction','Measures resistance','Generates AC'],1],['What should you do before measuring resistance in a circuit?',['Leave power on','Short the supply','De-energize the circuit','Select current mode'],2]];
+let qi=0,qscore=0,qanswered=false;function renderQuiz(){qanswered=false;quizProgress.textContent='QUESTION '+(qi+1)+' OF '+quiz.length;quizQuestion.textContent=quiz[qi][0];quizOptions.innerHTML=quiz[qi][1].map((o,i)=>'<button class="option" onclick="answerQuiz('+i+')">'+o+'</button>').join('');quizFeedback.textContent='';quizNext.disabled=true;quizNext.textContent=qi===quiz.length-1?'See results':'Next question →'}
+function answerQuiz(i){if(qanswered)return;qanswered=true;let correct=i===quiz[qi][2];if(correct)qscore++;quizFeedback.textContent=correct?'Correct!':'Not quite. Correct answer: '+quiz[qi][1][quiz[qi][2]];quizFeedback.style.color=correct?'var(--green)':'#b45309';quizNext.disabled=false}
+function nextQuiz(){if(!qanswered)return;if(qi<quiz.length-1){qi++;renderQuiz()}else{quizQuestion.textContent='Quiz complete!';quizOptions.innerHTML='';quizFeedback.textContent='';quizNext.style.display='none';quizResult.style.display='block';quizResult.innerHTML='<strong>'+qscore+' / '+quiz.length+'</strong><div class="muted">You answered '+qscore+' questions correctly.</div><button class="btn ghost" style="margin-top:10px" onclick="restartQuiz()">Try again</button>'}}
+function restartQuiz(){qi=0;qscore=0;quizNext.style.display='inline-flex';quizResult.style.display='none';renderQuiz()}
+newResistor();newComponent();renderQuiz();
+</script>
+</body></html>
