@@ -338,7 +338,7 @@ function submitScore(finalScore) {
   fetch(WEB_APP_URL, {
     method: 'POST',
     mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify({ name: studentName.trim(), score: finalScore })
   }).then(() => {
     setTimeout(loadLeaderboard, 1500); // Reload table after submission
@@ -358,6 +358,6 @@ let qi=0,qscore=0,qanswered=false;function renderQuiz(){qanswered=false;quizProg
 function answerQuiz(i){if(qanswered)return;qanswered=true;let correct=i===quiz[qi][2];if(correct)qscore++;quizFeedback.textContent=correct?'Correct!':'Not quite. Correct answer: '+quiz[qi][1][quiz[qi][2]];quizFeedback.style.color=correct?'var(--green)':'#b45309';quizNext.disabled=false}
 function nextQuiz(){if(!qanswered)return;if(qi<quiz.length-1){qi++;renderQuiz()}else{quizQuestion.textContent='Quiz complete!';quizOptions.innerHTML='';quizFeedback.textContent='';quizNext.style.display='none';quizResult.style.display='block';quizResult.innerHTML='<strong>'+qscore+' / '+quiz.length+'</strong><div class="muted">You answered '+qscore+' questions correctly.</div><button class="btn ghost" style="margin-top:10px" onclick="restartQuiz()">Try again</button>'}}
 function restartQuiz(){qi=0;qscore=0;quizNext.style.display='inline-flex';quizResult.style.display='none';renderQuiz()}
-newResistor();newComponent();renderQuiz();
+newComponent(); renderQuiz();
 </script>
 </body></html>
