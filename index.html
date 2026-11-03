@@ -72,22 +72,41 @@ a{color:inherit;text-decoration:none}button,input,select{font:inherit}.shell{dis
 
 <section class="page" id="games"><div class="page-intro"><div class="eyebrow">Practice by playing</div><h1>Games & challenges</h1><p>Short practice activities for building electronics fluency.</p></div>
   <div class="tool-layout">
-    <div class="card"><h3>Resistor color-code challenge</h3><p class="panel-sub">You have 1 minute! Correct answers add +3s, wrong answers subtract -3s.</p>
-  
-  <!-- Game Controls & HUD -->
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; background: #f0f4f9; padding: 10px; border-radius: 9px;">
-    <div>Time Left: <strong id="timerDisplay" style="font-size: 16px; color: var(--blue);">60s</strong></div>
-    <div>Score: <strong id="resScore">0</strong></div>
-    <button class="btn" id="startBtn" onclick="startResistorGame()">Start Game ⏱️</button>
-  </div>
+    <div class="card">
+      <h3>Resistor color-code challenge</h3>
+      <p class="panel-sub">You have 1 minute! Correct answers add +3s, wrong answers subtract -3s.</p>
+      
+      <!-- Game Controls & HUD -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; background: #f0f4f9; padding: 10px; border-radius: 9px;">
+        <div>Time Left: <strong id="timerDisplay" style="font-size: 16px; color: var(--blue);">60s</strong></div>
+        <div>Score: <strong id="resScore">0</strong></div>
+        <button class="btn" id="startBtn" onclick="startResistorGame()">Start Game ⏱️</button>
+      </div>
 
-  <div class="muted" id="round" style="display:none;">Ready...</div>
-  <div class="swatches" id="bands"></div>
-  <div class="game-question" id="resQuestion">Click "Start Game" to begin!</div>
-  <div class="options" id="resOptions"></div>
-  <div class="feedback" id="resFeedback" aria-live="polite"></div>
+      <div class="muted" id="round" style="display:none;">Ready...</div>
+      <div class="swatches" id="bands"></div>
+      <div class="game-question" id="resQuestion">Click "Start Game" to begin!</div>
+      <div class="options" id="resOptions"></div>
+      <div class="feedback" id="resFeedback" aria-live="polite"></div>
     </div>
-    <div class="card"><h3>Component quick match</h3><p class="panel-sub">Choose the best description for each component.</p><div class="game-question" id="compQuestion">What does a capacitor primarily do?</div><div class="options" id="compOptions"></div><div class="feedback" id="compFeedback" aria-live="polite"></div><button class="btn ghost" onclick="newComponent()">Next question ↻</button></div>
+    <div class="card">
+      <h3>🏆 Class Leaderboard (Top 10)</h3>
+      <p class="panel-sub">Highest scores in the 60-second resistor challenge</p>
+      <table style="width: 100%; border-collapse: collapse; margin-top: 10px;" id="leaderboardTable">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--line); text-align: left; font-size: 13px;">
+            <th style="padding: 8px;">Rank</th>
+            <th style="padding: 8px;">Student Name</th>
+            <th style="padding: 8px;">Score</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody">
+          <tr><td colspan="3" style="padding: 10px; color: var(--muted);">Loading scores...</td></tr>
+        </tbody>
+      </table>
+      <button class="btn ghost" style="margin-top: 12px;" onclick="loadLeaderboard()">Refresh Scores ⟳</button>
+    </div>
+      <div class="card"><h3>Component quick match</h3><p class="panel-sub">Choose the best description for each component.</p><div class="game-question" id="compQuestion">What does a capacitor primarily do?</div><div class="options" id="compOptions"></div><div class="feedback" id="compFeedback" aria-live="polite"></div><button class="btn ghost" onclick="newComponent()">Next question ↻</button></div>
   </div>
 </section>
 
@@ -157,7 +176,10 @@ function calculateOhms(){let v=parseFloat(document.getElementById('voltage').val
 function fmt(n){return Number(n.toPrecision(5)).toString()}
 function clearOhms(){['voltage','current','resistance'].forEach(id=>document.getElementById(id).value='');document.getElementById('ohmResult').innerHTML='<span class="muted">Your result will appear here.</span>'}
 function calculatePower(){let v=parseFloat(powerV.value),i=parseFloat(powerI.value);powerResult.innerHTML=Number.isFinite(v)&&Number.isFinite(i)&&v>=0&&i>=0?'<strong>'+fmt(v*i)+' W</strong><div class="muted">P = V × I</div>':'<span class="muted">Enter non-negative voltage and current values.</span>'}
-const colors=[['Black','#171717',0],['Brown','#8a4b20',1],['Red','#d83232',2],['Orange','#f18b27',3],['Yellow','#f5d547',4],['Green','#25844c',5],['Blue','#2869c7',6],['Violet','#8149a8',7],['Gray','#9299a3',8],['White','#f7f7f7',9]];
+const colors = [['Black','#171717',0],['Brown','#8a4b20',1],['Red','#d83232',2],['Orange','#f18b27',3],['Yellow','#f5d547',4],['Green','#25844c',5],['Blue','#2869c7',6],['Violet','#8149a8',7],['Gray','#9299a3',8],['White','#f7f7f7',9]];
+
+// Replace this placeholder with your deployed Google Apps Script Web App URL later
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwnLKFN1hu_yzN0fguySqLZCTg6DCkaKiy8QREMuFB6zPXi3eHy0o2zAMXd_q1Ouwd5/exec"; 
 
 let resistorAnswer = 0, resScore = 0, resRound = 0;
 let timeLeft = 60;
@@ -198,7 +220,7 @@ function newResistor(){
   resRound++;
   let a = Math.floor(Math.random()*10),
       b = Math.floor(Math.random()*10),
-      m = Math.floor(Math.random()*7);
+      m = Math.floor(Math.random()*7); // Multiplier range up to Megaohms
   
   resistorAnswer = (a * 10 + b) * Math.pow(10, m);
   let bandNames = [colors[a], colors[b], colors[Math.min(m, 9)], ['Gold', '#c69b35', 5]];
@@ -262,9 +284,12 @@ function endResistorGame() {
   bands.innerHTML = '';
   resOptions.innerHTML = '';
   resQuestion.textContent = 'Game Over! Final Score: ' + resScore + ' correct.';
-  resFeedback.textContent = 'Great practice! Click "Restart" to play again.';
+  resFeedback.textContent = 'Great practice! Click "Play Again" to try for a higher score.';
   resFeedback.style.color = 'var(--blue)';
   startBtn.textContent = 'Play Again';
+  
+  // Automatically trigger score submission prompt
+  submitScore(resScore);
 }
 
 function formatOhms(v){
@@ -273,8 +298,58 @@ function formatOhms(v){
   return fmt(v)+' Ω';
 }
 
+// Google Sheets Leaderboard Functions
+function loadLeaderboard() {
+  if (!WEB_APP_URL || WEB_APP_URL.includes("YOUR_GOOGLE_APPS_SCRIPT")) return;
+  
+  fetch(WEB_APP_URL)
+    .then(response => response.json())
+    .then(data => {
+      const tbody = document.getElementById('leaderboardBody');
+      if (!data || data.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3" style="padding: 10px; color: var(--muted);">No scores recorded yet. Be the first!</td></tr>';
+        return;
+      }
+      
+      tbody.innerHTML = data.map((row, index) => `
+        <tr style="border-bottom: 1px solid var(--line); font-size: 13px;">
+          <td style="padding: 8px; font-weight: bold;">#${index + 1}</td>
+          <td style="padding: 8px;">${escapeHtml(String(row.Name || 'Anonymous'))}</td>
+          <td style="padding: 8px; font-weight: bold; color: var(--blue);">${row.Score}</td>
+        </tr>
+      `).join('');
+    })
+    .catch(error => {
+      console.error('Leaderboard error:', error);
+      document.getElementById('leaderboardBody').innerHTML = '<tr><td colspan="3" style="padding: 10px; color: #b45309;">Could not load scores.</td></tr>';
+    });
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function submitScore(finalScore) {
+  if (finalScore <= 0 || !WEB_APP_URL || WEB_APP_URL.includes("YOUR_GOOGLE_APPS_SCRIPT")) return;
+  
+  let studentName = prompt("Time's up! Enter your name/initials for the class leaderboard:", "");
+  if (!studentName || studentName.trim() === "") return;
+  
+  fetch(WEB_APP_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: studentName.trim(), score: finalScore })
+  }).then(() => {
+    setTimeout(loadLeaderboard, 1500); // Reload table after submission
+  }).catch(err => console.error("Error submitting score:", err));
+}
+
 // Initial placeholder view setup on load
 bands.innerHTML = '<div class="swatch" style="background:#ddd"></div><div class="swatch" style="background:#ddd"></div><div class="swatch" style="background:#ddd"></div><div class="swatch" style="background:#ddd"></div>';
+loadLeaderboard();
+
+  
 const comps=[['What does a capacitor primarily do?',['Stores energy in an electric field','Limits current in all conditions','Emits light','Amplifies current'],0],['Which component allows current mainly in one direction?',['Resistor','Diode','Capacitor','Inductor'],1],['What is the usual unit of resistance?',['Volt','Ampere','Ohm','Watt'],2],['Which instrument measures voltage?',['Digital multimeter','Soldering iron','Function generator only','Wire stripper'],0]];
 let compIndex=0;function newComponent(){let q=comps[compIndex%comps.length];compIndex++;compQuestion.textContent=q[0];compOptions.innerHTML=q[1].map((o,i)=>'<button class="option" onclick="checkComp('+i+')">'+o+'</button>').join('');compFeedback.textContent=''}
 function checkComp(i){let q=comps[(compIndex-1)%comps.length];compFeedback.textContent=i===q[2]?'Correct!':'Try again. Think about the component’s function.';compFeedback.style.color=i===q[2]?'var(--green)':'#b45309'}
