@@ -408,6 +408,18 @@ newComponent(); renderQuiz();
 // Database of components, their clean SVG vector markup, and correct names
 const symbolDatabase = [
   { 
+    name: "Pushbutton (NO)", 
+    svg: '<path d="M10,40 h25 M85,40 h25 M35,40 v-15 h50 v15" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/><circle cx="35" cy="40" r="3" fill="#101d32"/><circle cx="85" cy="40" r="3" fill="#101d32"/>' 
+  },
+  { 
+    name: "Zener Diode", 
+    svg: '<path d="M10,40 h30 m40,0 h30 M40,20 v40 l40,-20 z M80,20 v40 M73,20 h7 v7 M47,60 h-7 v-7" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
+  },
+  { 
+    name: "Operational Amplifier", 
+    svg: '<path d="M30,15 l60,25 l-60,25 z M35,30 h15 M35,50 h15 M70,40 h20 M42,28 v4 M40,30 h4 M42,48 v4 M40,50 h4" stroke="#101d32" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' 
+  },
+  { 
     name: "Resistor", 
     svg: '<path d="M10,40 h15 l5,-15 l10,30 l10,-30 l10,30 l10,-30 l10,30 l5,-15 h15" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
   },
@@ -421,7 +433,7 @@ const symbolDatabase = [
   },
   { 
     name: "Transformer", 
-    svg: '<path d="M10,40 h18 c0,-12 8,-12 12,0 c0,-12 8,-12 12,0 h8 M72,40 h8 c0,-12 8,-12 12,0 c0,-12 8,-12 12,0 h18 M55,15 v50 M65,15 v50" stroke="#101d32" stroke-width="4" fill="none"/>' 
+    svg: '<path d="M10,40 h25 M85,40 h25 M35,15 v50 M85,15 v50 M55,15 v50 M65,15 v50 M35,15 c-12,0 -12,8 0,12 c-12,0 -12,8 0,12 c-12,0 -12,8 0,12 c-12,0 -12,8 0,14 M85,15 c12,0 12,8 0,12 c12,0 12,8 0,12 c12,0 12,8 0,12 c12,0 12,8 0,14" stroke="#101d32" stroke-width="4" fill="none"/>'
   },
   { 
     name: "Diode", 
@@ -533,34 +545,16 @@ function checkSymbolAnswer(selectedOption) {
   
   if (selectedOption === currentSymbolAnswer) {
     symbolScore++;
-    symbolTimeLeft += 3; // +3 seconds bonus
-    symbolTimerDisplay.textContent = symbolTimeLeft + 's (+3s)';
-    symbolTimerDisplay.style.color = 'var(--green)';
     symbolScoreEl.textContent = symbolScore;
-    symbolFeedback.textContent = 'Correct! +3 seconds 🚀';
+    symbolFeedback.textContent = 'Correct! 🎉';
     symbolFeedback.style.color = 'var(--green)';
     
-    setTimeout(() => {
-      if (symbolGameIsActive) symbolTimerDisplay.style.color = 'var(--blue)';
-    }, 800);
-    
-    setTimeout(newSymbolRound, 600);
+    setTimeout(newSymbolRound, 500);
   } else {
-    symbolTimeLeft = Math.max(0, symbolTimeLeft - 3); // -3 seconds penalty
-    symbolTimerDisplay.textContent = symbolTimeLeft + 's (-3s)';
-    symbolTimerDisplay.style.color = '#b45309';
-    symbolFeedback.textContent = 'Incorrect! -3s. It was: ' + currentSymbolAnswer;
+    symbolFeedback.textContent = 'Incorrect! It was: ' + currentSymbolAnswer;
     symbolFeedback.style.color = '#b45309';
     
-    setTimeout(() => {
-      if (symbolGameIsActive) symbolTimerDisplay.style.color = 'var(--blue)';
-    }, 800);
-    
-    if (symbolTimeLeft <= 0) {
-      endSymbolGame();
-    } else {
-      setTimeout(newSymbolRound, 1000);
-    }
+    setTimeout(newSymbolRound, 800);
   }
 }
 
