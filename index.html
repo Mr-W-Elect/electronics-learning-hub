@@ -412,12 +412,32 @@ const symbolDatabase = [
     svg: '<path d="M10,40 h25 M85,40 h25 M35,40 v-15 h50 v15" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/><circle cx="35" cy="40" r="3" fill="#101d32"/><circle cx="85" cy="40" r="3" fill="#101d32"/>' 
   },
   { 
+    name: "AND Gate", 
+    svg: '<path d="M10,25 h20 M10,55 h20 M90,40 h20 M30,15 v50 h25 c18,0 35,-11 35,-25 c0,-14 -17,-25 -35,-25 z" stroke="#101d32" stroke-width="4" fill="none"/>' 
+  },
+  { 
+    name: "OR Gate", 
+    svg: '<path d="M10,25 h25 M10,55 h25 M90,40 h20 M30,15 c10,16 10,34 0,50 c25,0 45,-10 60,-25 c-15,-15 -35,-25 -60,-25 z" stroke="#101d32" stroke-width="4" fill="none"/>' 
+  },
+  { 
     name: "Zener Diode", 
     svg: '<path d="M10,40 h30 m40,0 h30 M40,20 v40 l40,-20 z M80,20 v40 M73,20 h7 v7 M47,60 h-7 v-7" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
   },
   { 
+    name: "Triac", 
+    svg: '<path d="M10,40 h25 M85,40 h25 M35,20 l25,20 l-25,20 z M60,20 l25,20 l-25,20 z M60,65 v-25 M60,65 h-15 M60,15 v25 M60,15 h15" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
+  },
+  { 
+    name: "Diac", 
+    svg: '<path d="M10,40 h30 m40,0 h30 M35,20 l25,20 l-25,20 z M85,20 l-25,20 l25,20" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
+ },
+  { 
     name: "Operational Amplifier", 
     svg: '<path d="M30,15 l60,25 l-60,25 z M35,30 h15 M35,50 h15 M70,40 h20 M42,28 v4 M40,30 h4 M42,48 v4 M40,50 h4" stroke="#101d32" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' 
+  },
+  { 
+    name: "Crystal Oscillator", 
+    svg: '<path d="M10,40 h35 M75,40 h35 M45,15 v50 M75,15 v50 M53,10 v60 h14 v-60 z" stroke="#101d32" stroke-width="4" fill="none"/>' 
   },
   { 
     name: "Resistor", 
@@ -431,11 +451,7 @@ const symbolDatabase = [
     name: "Inductor", 
     svg: '<path d="M10,40 h15 c0,-12 8,-12 12,0 c0,-12 8,-12 12,0 c0,-12 8,-12 12,0 c0,-12 8,-12 12,0 h17" stroke="#101d32" stroke-width="4" fill="none"/>' 
   },
-  { 
-    name: "Transformer", 
-    svg: '<path d="M10,40 h25 M85,40 h25 M35,15 v50 M85,15 v50 M55,15 v50 M65,15 v50 M35,15 c-12,0 -12,8 0,12 c-12,0 -12,8 0,12 c-12,0 -12,8 0,12 c-12,0 -12,8 0,14 M85,15 c12,0 12,8 0,12 c12,0 12,8 0,12 c12,0 12,8 0,12 c12,0 12,8 0,14" stroke="#101d32" stroke-width="4" fill="none"/>'
-  },
-  { 
+    { 
     name: "Diode", 
     svg: '<path d="M10,40 h30 m40,0 h30 M40,20 v40 l40,-20 z M80,20 v40" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
   },
@@ -453,7 +469,7 @@ const symbolDatabase = [
   },
   { 
     name: "AC Voltage Source", 
-    svg: '<path d="M10,40 h30 c10,0 10,-25 20,-25 c10,0 10,25 20,25 h30" stroke="#101d32" stroke-width="4" fill="none"/>' 
+    svg: '<circle cx="60" cy="40" r="30" stroke="#101d32" stroke-width="4" fill="none"/><path d="M10,40 h20 M90,40 h20 M42,40 c0,-14 9,-14 18,0 c9,14 18,14 18,0" stroke="#101d32" stroke-width="4" fill="none" stroke-linecap="round"/>' 
   },
   { 
     name: "Switch (SPST)", 
@@ -462,6 +478,18 @@ const symbolDatabase = [
   { 
     name: "Fuse", 
     svg: '<path d="M10,40 h25 v-15 h50 v30 h-50 v-15 M85,40 h25" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
+  },
+  { 
+    name: "Ammeter", 
+    svg: '<circle cx="60" cy="40" r="28" stroke="#101d32" stroke-width="4" fill="none"/><path d="M10,40 h22 M88,40 h22 M48,55 l12,-28 l12,28 M52,43 h16" stroke="#101d32" stroke-width="4" fill="none" stroke-linecap="round"/>' 
+  },
+  { 
+    name: "Voltmeter", 
+    svg: '<circle cx="60" cy="40" r="28" stroke="#101d32" stroke-width="4" fill="none"/><path d="M10,40 h22 M88,40 h22 M48,27 l12,28 l12,-28" stroke="#101d32" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' 
+  },
+  { 
+    name: "PNP Transistor", 
+    svg: '<path d="M60,20 v40 M40,30 l20,10 M40,50 l20,-10 M40,30 v20 M60,32 l15,-10 M60,48 l15,10" stroke="#101d32" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><polygon points="48,34 58,40 54,28" fill="#101d32"/>' 
   },
   { 
     name: "NPN Transistor", 
@@ -569,8 +597,7 @@ function endSymbolGame() {
   symbolFeedback.style.color = 'var(--blue)';
   symbolStartBtn.textContent = 'Play Again';
   
-  // Uses your existing Google Sheets leaderboard function!
-  submitScore(symbolScore);
+ symbolFeedback.textContent = `Game Over! Final Score: ${symbolScore}`;
 }
 
 </script>
