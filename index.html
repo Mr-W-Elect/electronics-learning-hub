@@ -77,16 +77,101 @@ a{color:inherit;text-decoration:none}button,input,select{font:inherit}.shell{dis
   </div>
 </section>
 
-<section class="page" id="lessons"><div class="page-intro"><div class="eyebrow">Build your knowledge</div><h1>Learning resources</h1><p>Use these topic areas as a starting point for class notes, lessons, and reference material.</p></div>
-  <div class="grid">
-    <article class="card"><div class="feature-icon">⚡</div><h3>Electricity fundamentals</h3><p>Charge, voltage, current, resistance, power, and energy.</p><span class="tag">FOUNDATIONS</span></article>
-    <article class="card"><div class="feature-icon">∿</div><h3>AC & DC circuits</h3><p>Waveforms, frequency, RMS, polarity, and basic circuit behavior.</p><span class="tag">CIRCUITS</span></article>
-    <article class="card"><div class="feature-icon">▥</div><h3>Electronic components</h3><p>Resistors, capacitors, inductors, diodes, transistors, and ICs.</p><span class="tag">COMPONENTS</span></article>
-    <article class="card"><div class="feature-icon">⌁</div><h3>Schematic symbols</h3><p>Read and interpret common electronic symbols and diagrams.</p><span class="tag">READING DIAGRAMS</span></article>
-    <article class="card"><div class="feature-icon">▦</div><h3>Digital electronics</h3><p>Binary numbers, logic gates, truth tables, and digital signals.</p><span class="tag">DIGITAL</span></article>
-    <article class="card"><div class="feature-icon">⌘</div><h3>Microcontrollers</h3><p>Explore Arduino-style boards, inputs, outputs, and simple code.</p><span class="tag">EMBEDDED SYSTEMS</span></article>
+<section class="page" id="lessons">
+  <div class="page-intro">
+    <div class="eyebrow">Build your knowledge</div>
+    <h1>Learning resources</h1>
+    <p>Core theory, technical formulas, and reference guides for the electronics workshop.</p>
   </div>
-  <div class="notice">Teacher note: Add lesson links, class slides, and curriculum documents here.</div>
+
+  <div class="grid" style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px;">
+    
+    <!-- 1. Electricity Fundamentals -->
+    <article class="card" style="padding: 24px;">
+      <div class="feature-top"><div class="feature-icon">⚡</div><span class="tag">FOUNDATIONS</span></div>
+      <h3>Electricity Fundamentals</h3>
+      <p style="margin-bottom: 15px;">The core relationships governing electrical work and troubleshooting.</p>
+      <div style="background: var(--paper); padding: 12px; border-radius: 8px; font-size: 13px; border-left: 3px solid var(--blue);">
+        <strong>Key Formulas:</strong><br>
+        • <strong>Ohm's Law:</strong> $V = I \times R$<br>
+        • <strong>Electrical Power:</strong> $P = I \times V = I^2 \times R = \frac{V^2}{R}$<br>
+        • <strong>Current ($I$):</strong> Flow of charge measured in Amperes.<br>
+        • <strong>Voltage ($V$):</strong> Potential difference driving current.
+      </div>
+    </article>
+
+    <!-- 2. AC & DC Circuits -->
+    <article class="card" style="padding: 24px;">
+      <div class="feature-top"><div class="feature-icon">∿</div><span class="tag">CIRCUITS</span></div>
+      <h3>AC & DC Circuits</h3>
+      <p style="margin-bottom: 15px;">Understanding current behavior, network topologies, and waveforms.</p>
+      <div style="background: var(--paper); padding: 12px; border-radius: 8px; font-size: 13px; border-left: 3px solid var(--blue);">
+        <strong>Circuit Rules:</strong><br>
+        • <strong>Series:</strong> Current is constant ($I_{total} = I_1 = I_2$). Resistance adds ($R_{eq} = R_1 + R_2$).<br>
+        • <strong>Parallel:</strong> Voltage is constant across branches. Resistance decreases ($1/R_{eq} = 1/R_1 + 1/R_2$).<br>
+        • <strong>AC Parameters:</strong> Frequency ($f$), RMS voltage, and sinusoidal phase.
+      </div>
+    </article>
+
+    <!-- 3. Electronic Components -->
+    <article class="card" style="padding: 24px;">
+      <div class="feature-top"><div class="feature-icon">▥</div><span class="tag">COMPONENTS</span></div>
+      <h3>Electronic Components</h3>
+      <p style="margin-bottom: 15px;">Passive devices, active semiconductors, and their practical lab applications.</p>
+      <div style="background: var(--paper); padding: 12px; border-radius: 8px; font-size: 13px; border-left: 3px solid var(--blue);">
+        <strong>Device Functions:</strong><br>
+        • <strong>Resistors:</strong> Limit current flow and drop voltage.<br>
+        • <strong>Capacitors:</strong> Store electrical energy electrostatically; filter ripple.<br>
+        • <strong>Diodes:</strong> Permit current flow in only one direction.<br>
+        • <strong>Transistors:</strong> Act as solid-state switches or signal amplifiers.
+      </div>
+    </article>
+
+    <!-- 4. Schematic Symbols -->
+    <article class="card" style="padding: 24px;">
+      <div class="feature-top"><div class="feature-icon">⌁</div><span class="tag">DIAGRAMS</span></div>
+      <h3>Schematic Symbols</h3>
+      <p style="margin-bottom: 15px;">Reading blueprint documentation and electrical schematics like a technician.</p>
+      <div style="background: var(--paper); padding: 12px; border-radius: 8px; font-size: 13px; border-left: 3px solid var(--blue);">
+        <strong>Reading Standards:</strong><br>
+        • Signal flow conventionally moves from <strong>left to right</strong> (inputs to outputs).<br>
+        • Positive power rails are typically drawn at the top; common ground references at the bottom.<br>
+        • Node dots indicate permanent electrical connections; crossovers without dots are unjoined.
+      </div>
+    </article>
+
+    <!-- 5. Digital Electronics -->
+    <article class="card" style="padding: 24px;">
+      <div class="feature-top"><div class="feature-icon">▦</div><span class="tag">DIGITAL</span></div>
+      <h3>Digital Electronics</h3>
+      <p style="margin-bottom: 15px;">Binary logic, voltage levels, and combinational gate logic.</p>
+      <div style="background: var(--paper); padding: 12px; border-radius: 8px; font-size: 13px; border-left: 3px solid var(--blue);">
+        <strong>Logic Gate Basics:</strong><br>
+        • <strong>AND:</strong> Output HIGH only if all inputs are HIGH.<br>
+        • <strong>OR:</strong> Output HIGH if any input is HIGH.<br>
+        • <strong>NOT (Inverter):</strong> Reverses logic state (0 to 1, 1 to 0).<br>
+        • <strong>TTL Levels:</strong> LOW = 0V to 0.8V; HIGH = 2.0V to 5V.
+      </div>
+    </article>
+
+    <!-- 6. Microcontrollers -->
+    <article class="card" style="padding: 24px;">
+      <div class="feature-top"><div class="feature-icon">⌘</div><span class="tag">EMBEDDED SYSTEMS</span></div>
+      <h3>Microcontrollers & Code</h3>
+      <p style="margin-bottom: 15px;">Bridging hardware circuits with software control structures.</p>
+      <div style="background: var(--paper); padding: 12px; border-radius: 8px; font-size: 13px; border-left: 3px solid var(--blue);">
+        <strong>Architecture Basics:</strong><br>
+        • <strong>GPIO Pins:</strong> Configured as digital inputs (buttons/sensors) or outputs (LEDs/relays).<br>
+        • <strong>PWM (Pulse Width Modulation):</strong> Simulated analog output for dimming lights or controlling motor speed.<br>
+        • <strong>Core Syntax:</strong> `setup()` runs once on boot; `loop()` runs continuously.
+      </div>
+    </article>
+
+  </div>
+
+  <div class="notice" style="margin-top: 24px;">
+    <strong>Instructor Note:</strong> Use these cards for quick theory review before lab builds or as study references ahead of practical troubleshooting assessments.
+  </div>
 </section>
 
 <section class="page" id="games"><div class="page-intro"><div class="eyebrow">Practice by playing</div><h1>Games & challenges</h1><p>Short practice activities for building electronics fluency.</p></div>
@@ -407,11 +492,7 @@ newComponent(); renderQuiz();
 
 // Database of components, their clean SVG vector markup, and correct names
 const symbolDatabase = [
-  { 
-    name: "Pushbutton (NO)", 
-    svg: '<path d="M10,40 h25 M85,40 h25 M35,40 v-15 h50 v15" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/><circle cx="35" cy="40" r="3" fill="#101d32"/><circle cx="85" cy="40" r="3" fill="#101d32"/>' 
-  },
-  { 
+   { 
     name: "AND Gate", 
     svg: '<path d="M10,25 h20 M10,55 h20 M90,40 h20 M30,15 v50 h25 c18,0 35,-11 35,-25 c0,-14 -17,-25 -35,-25 z" stroke="#101d32" stroke-width="4" fill="none"/>' 
   },
@@ -423,15 +504,7 @@ const symbolDatabase = [
     name: "Zener Diode", 
     svg: '<path d="M10,40 h30 m40,0 h30 M40,20 v40 l40,-20 z M80,20 v40 M73,20 h7 v7 M47,60 h-7 v-7" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
   },
-  { 
-    name: "Triac", 
-    svg: '<path d="M10,40 h25 M85,40 h25 M35,20 l25,20 l-25,20 z M60,20 l25,20 l-25,20 z M60,65 v-25 M60,65 h-15 M60,15 v25 M60,15 h15" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
-  },
-  { 
-    name: "Diac", 
-    svg: '<path d="M10,40 h30 m40,0 h30 M35,20 l25,20 l-25,20 z M85,20 l-25,20 l25,20" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
- },
-  { 
+    { 
     name: "Operational Amplifier", 
     svg: '<path d="M30,15 l60,25 l-60,25 z M35,30 h15 M35,50 h15 M70,40 h20 M42,28 v4 M40,30 h4 M42,48 v4 M40,50 h4" stroke="#101d32" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' 
   },
@@ -487,11 +560,7 @@ const symbolDatabase = [
     name: "Voltmeter", 
     svg: '<circle cx="60" cy="40" r="28" stroke="#101d32" stroke-width="4" fill="none"/><path d="M10,40 h22 M88,40 h22 M48,27 l12,28 l12,-28" stroke="#101d32" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' 
   },
-  { 
-    name: "PNP Transistor", 
-    svg: '<path d="M60,20 v40 M40,30 l20,10 M40,50 l20,-10 M40,30 v20 M60,32 l15,-10 M60,48 l15,10" stroke="#101d32" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><polygon points="48,34 58,40 54,28" fill="#101d32"/>' 
-  },
-  { 
+    { 
     name: "NPN Transistor", 
     svg: '<path d="M60,20 v40 M40,30 l20,10 M40,50 l20,-10 M40,30 v20 M60,32 l15,-10 M60,48 l15,10" stroke="#101d32" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><polygon points="68,52 78,58 72,48" fill="#101d32"/>' 
   }
