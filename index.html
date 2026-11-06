@@ -413,15 +413,23 @@ const symbolDatabase = [
   },
   { 
     name: "Capacitor", 
-    svg: '<path d="M30,10 v60 M90,10 v60 M10,40 h20 M90,40 h20" stroke="#101d32" stroke-width="4" fill="none"/>' 
+    svg: '<path d="M45,10 v60 M75,10 v60 M10,40 h35 M75,40 h35" stroke="#101d32" stroke-width="4" fill="none"/>' 
   },
   { 
     name: "Inductor", 
-    svg: '<path d="M10,40 h15 c0,-15 10,-15 15,0 c0,-15 10,-15 15,0 c0,-15 10,-15 15,0 c0,-15 10,-15 15,0 h15" stroke="#101d32" stroke-width="4" fill="none"/>' 
+    svg: '<path d="M10,40 h15 c0,-12 8,-12 12,0 c0,-12 8,-12 12,0 c0,-12 8,-12 12,0 c0,-12 8,-12 12,0 h17" stroke="#101d32" stroke-width="4" fill="none"/>' 
+  },
+  { 
+    name: "Transformer", 
+    svg: '<path d="M10,40 h18 c0,-12 8,-12 12,0 c0,-12 8,-12 12,0 h8 M72,40 h8 c0,-12 8,-12 12,0 c0,-12 8,-12 12,0 h18 M55,15 v50 M65,15 v50" stroke="#101d32" stroke-width="4" fill="none"/>' 
   },
   { 
     name: "Diode", 
     svg: '<path d="M10,40 h30 m40,0 h30 M40,20 v40 l40,-20 z M80,20 v40" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
+  },
+  { 
+    name: "LED", 
+    svg: '<path d="M10,40 h30 m40,0 h30 M40,20 v40 l40,-20 z M80,20 v40 M65,12 l15,-10 M78,22 l10,-12" stroke="#101d32" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' 
   },
   { 
     name: "Ground", 
@@ -432,6 +440,10 @@ const symbolDatabase = [
     svg: '<path d="M10,40 h35 M75,40 h35 M45,20 v40 M75,25 v30" stroke="#101d32" stroke-width="4" fill="none" stroke-linecap="round"/>' 
   },
   { 
+    name: "AC Voltage Source", 
+    svg: '<path d="M10,40 h30 c10,0 10,-25 20,-25 c10,0 10,25 20,25 h30" stroke="#101d32" stroke-width="4" fill="none"/>' 
+  },
+  { 
     name: "Switch (SPST)", 
     svg: '<path d="M10,40 h25 l45,-30 M80,40 h30" stroke="#101d32" stroke-width="4" fill="none" stroke-linecap="round"/>' 
   },
@@ -440,8 +452,8 @@ const symbolDatabase = [
     svg: '<path d="M10,40 h25 v-15 h50 v30 h-50 v-15 M85,40 h25" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
   },
   { 
-    name: "Transformer", 
-    svg: '<path d="M10,40 h30 c0,-15 10,-15 15,0 c0,-15 10,-15 15,0 M65,40 h30 c0,-15 10,-15 15,0 c0,-15 10,-15 15,0" stroke="#101d32" stroke-width="4" fill="none"/>' 
+    name: "NPN Transistor", 
+    svg: '<path d="M60,20 v40 M40,30 l20,10 M40,50 l20,-10 M40,30 v20 M60,32 l15,-10 M60,48 l15,10" stroke="#101d32" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><polygon points="68,52 78,58 72,48" fill="#101d32"/>' 
   }
 ];
 let currentSymbolAnswer = "";
