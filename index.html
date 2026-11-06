@@ -125,6 +125,28 @@ a{color:inherit;text-decoration:none}button,input,select{font:inherit}.shell{dis
       </table>
       <button class="btn ghost" style="margin-top: 12px;" onclick="loadLeaderboard()">Refresh Scores ⟳</button>
     </div>
+    <div class="card">
+      <h3>Schematic Symbol Speed Match</h3>
+      <p class="panel-sub">Match the correct symbol name! 60 seconds. +3s for correct, -3s for incorrect.</p>
+      
+      <!-- Game Controls & HUD -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; background: #f0f4f9; padding: 10px; border-radius: 9px;">
+        <div>Time Left: <strong id="symbolTimerDisplay" style="font-size: 16px; color: var(--blue);">60s</strong></div>
+        <div>Score: <strong id="symbolScore">0</strong></div>
+        <button class="btn" id="symbolStartBtn" onclick="startSymbolGame()">Start Game ⚡</button>
+      </div>
+
+      <div class="muted" id="symbolRound" style="display:none;">Ready...</div>
+      
+      <!-- Symbol Display Box -->
+      <div style="background: #f8fafc; border: 2px dashed var(--line); border-radius: 12px; height: 110px; display: grid; place-items: center; margin: 14px 0;">
+        <div id="symbolDisplay" style="font-size: 48px; font-weight: bold; color: var(--navy);">🔌</div>
+      </div>
+
+      <div class="game-question" id="symbolQuestion">Click "Start Game" to begin!</div>
+      <div class="options" id="symbolOptions"></div>
+      <div class="feedback" id="symbolFeedback" aria-live="polite"></div>
+    </div>
       <div class="card"><h3>Component quick match</h3><p class="panel-sub">Choose the best description for each component.</p><div class="game-question" id="compQuestion">What does a capacitor primarily do?</div><div class="options" id="compOptions"></div><div class="feedback" id="compFeedback" aria-live="polite"></div><button class="btn ghost" onclick="newComponent()">Next question ↻</button></div>
   </div>
 </section>
@@ -378,5 +400,149 @@ function answerQuiz(i){if(qanswered)return;qanswered=true;let correct=i===quiz[q
 function nextQuiz(){if(!qanswered)return;if(qi<quiz.length-1){qi++;renderQuiz()}else{quizQuestion.textContent='Quiz complete!';quizOptions.innerHTML='';quizFeedback.textContent='';quizNext.style.display='none';quizResult.style.display='block';quizResult.innerHTML='<strong>'+qscore+' / '+quiz.length+'</strong><div class="muted">You answered '+qscore+' questions correctly.</div><button class="btn ghost" style="margin-top:10px" onclick="restartQuiz()">Try again</button>'}}
 function restartQuiz(){qi=0;qscore=0;quizNext.style.display='inline-flex';quizResult.style.display='none';renderQuiz()}
 newComponent(); renderQuiz();
+
+  // --- SCHEMATIC SYMBOL MATCHING GAME ---
+
+// Database of components, their symbol icons/emojis, and correct names
+const symbolDatabase = [
+  { name: "Resistor", symbol: "⎍" },
+  { name: "Capacitor", symbol: "⫲" },
+  { name: "Inductor", symbol: "∿" },
+  { name: "Diode", symbol: "▷|-" },
+  { name: "LED", symbol: "▷|\\⚡" },
+  { name: "Transistor (NPN)", symbol: "⋔" },
+  { name: "Ground", symbol: "⏚" },
+  { name: "AC Voltage Source", symbol: "∾" },
+  { name: "DC Voltage Source", symbol: "⎓" },
+  { name: "Switch (SPST)", symbol: "╱o" },
+  { name: "Fuse", symbol: "⏍" },
+  { name: "Transformer", symbol: "⊃(C)⊂" },
+  { name: "Operational Amplifier", symbol: "▷" },
+  { name: "Logic Gate (AND)", symbol: "D" }
+];
+
+let currentSymbolAnswer = "";
+let symbolScore = 0;
+let symbolRound = 0;
+let symbolTimeLeft = 60;
+let symbolGameInterval = null;
+let symbolGameIsActive = false;
+
+const symbolScoreEl = document.getElementById('symbolScore');
+const symbolTimerDisplay = document.getElementById('symbolTimerDisplay');
+const symbolStartBtn = document.getElementById('symbolStartBtn');
+const symbolDisplay = document.getElementById('symbolDisplay');
+const symbolQuestion = document.getElementById('symbolQuestion');
+const symbolOptions = document.getElementById('symbolOptions');
+const symbolFeedback = document.getElementById('symbolFeedback');
+const symbolRoundEl = document.getElementById('symbolRound');
+
+function startSymbolGame() {
+  symbolScore = 0;
+  symbolRound = 0;
+  symbolTimeLeft = 60;
+  symbolGameIsActive = true;
+  symbolScoreEl.textContent = symbolScore;
+  symbolTimerDisplay.textContent = symbolTimeLeft + 's';
+  symbolStartBtn.textContent = 'Restart';
+  symbolRoundEl.style.display = 'block';
+  
+  if (symbolGameInterval) clearInterval(symbolGameInterval);
+  
+  symbolGameInterval = setInterval(() => {
+    symbolTimeLeft--;
+    symbolTimerDisplay.textContent = symbolTimeLeft + 's';
+    
+    if (symbolTimeLeft <= 0) {
+      clearInterval(symbolGameInterval);
+      endSymbolGame();
+    }
+  }, 1000);
+  
+  newSymbolRound();
+}
+
+function newSymbolRound() {
+  if (!symbolGameIsActive) return;
+  symbolRound++;
+  symbolRoundEl.textContent = 'Question ' + symbolRound;
+  
+  // Pick a random target symbol
+  let target = symbolDatabase[Math.floor(Math.random() * symbolDatabase.length)];
+  currentSymbolAnswer = target.name;
+  
+  // Display the symbol
+  symbolDisplay.textContent = target.symbol;
+  symbolQuestion.textContent = "What component does this symbol represent?";
+  
+  // Pick 3 unique wrong answers
+  let wrongOptions = symbolDatabase
+    .filter(item => item.name !== currentSymbolAnswer)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 3)
+    .map(item => item.name);
+    
+  // Combine with correct answer and shuffle
+  let options = [...wrongOptions, currentSymbolAnswer].sort(() => Math.random() - 0.5);
+  
+  // Render buttons
+  symbolOptions.innerHTML = options.map(opt => 
+    `<button class="option" onclick="checkSymbolAnswer('${opt.replace(/'/g, "\\'")}')">${opt}</button>`
+  ).join('');
+  
+  symbolFeedback.textContent = '';
+}
+
+function checkSymbolAnswer(selectedOption) {
+  if (!symbolGameIsActive) return;
+  
+  if (selectedOption === currentSymbolAnswer) {
+    symbolScore++;
+    symbolTimeLeft += 3; // +3 seconds bonus
+    symbolTimerDisplay.textContent = symbolTimeLeft + 's (+3s)';
+    symbolTimerDisplay.style.color = 'var(--green)';
+    symbolScoreEl.textContent = symbolScore;
+    symbolFeedback.textContent = 'Correct! +3 seconds 🚀';
+    symbolFeedback.style.color = 'var(--green)';
+    
+    setTimeout(() => {
+      if (symbolGameIsActive) symbolTimerDisplay.style.color = 'var(--blue)';
+    }, 800);
+    
+    setTimeout(newSymbolRound, 600);
+  } else {
+    symbolTimeLeft = Math.max(0, symbolTimeLeft - 3); // -3 seconds penalty
+    symbolTimerDisplay.textContent = symbolTimeLeft + 's (-3s)';
+    symbolTimerDisplay.style.color = '#b45309';
+    symbolFeedback.textContent = 'Incorrect! -3s. It was: ' + currentSymbolAnswer;
+    symbolFeedback.style.color = '#b45309';
+    
+    setTimeout(() => {
+      if (symbolGameIsActive) symbolTimerDisplay.style.color = 'var(--blue)';
+    }, 800);
+    
+    if (symbolTimeLeft <= 0) {
+      endSymbolGame();
+    } else {
+      setTimeout(newSymbolRound, 1000);
+    }
+  }
+}
+
+function endSymbolGame() {
+  symbolGameIsActive = false;
+  clearInterval(symbolGameInterval);
+  symbolTimerDisplay.textContent = 'Time’s up!';
+  symbolDisplay.textContent = '🏁';
+  symbolOptions.innerHTML = '';
+  symbolQuestion.textContent = 'Game Over! Final Score: ' + symbolScore;
+  symbolFeedback.textContent = 'Great circuit diagram practice! Enter your score below.';
+  symbolFeedback.style.color = 'var(--blue)';
+  symbolStartBtn.textContent = 'Play Again';
+  
+  // Uses your existing Google Sheets leaderboard function!
+  submitScore(symbolScore);
+}
+
 </script>
 </body></html>
