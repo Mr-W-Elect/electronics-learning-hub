@@ -139,8 +139,10 @@ a{color:inherit;text-decoration:none}button,input,select{font:inherit}.shell{dis
       <div class="muted" id="symbolRound" style="display:none;">Ready...</div>
       
       <!-- Symbol Display Box -->
-      <div style="background: #f8fafc; border: 2px dashed var(--line); border-radius: 12px; height: 110px; display: grid; place-items: center; margin: 14px 0;">
-        <div id="symbolDisplay" style="font-size: 48px; font-weight: bold; color: var(--navy);">🔌</div>
+      <div style="background: #ffffff; border: 2px solid var(--line); border-radius: 12px; height: 120px; display: grid; place-items: center; margin: 14px 0; padding: 10px;">
+        <svg id="symbolDisplaySVG" width="120" height="80" viewBox="0 0 120 80" style="overflow: visible;">
+          <!-- Dynamic symbol vector paths will load here -->
+        </svg>
       </div>
 
       <div class="game-question" id="symbolQuestion">Click "Start Game" to begin!</div>
@@ -403,24 +405,45 @@ newComponent(); renderQuiz();
 
   // --- SCHEMATIC SYMBOL MATCHING GAME ---
 
-// Database of components, their symbol icons/emojis, and correct names
+// Database of components, their clean SVG vector markup, and correct names
 const symbolDatabase = [
-  { name: "Resistor", symbol: "⎍" },
-  { name: "Capacitor", symbol: "⫲" },
-  { name: "Inductor", symbol: "∿" },
-  { name: "Diode", symbol: "▷|-" },
-  { name: "LED", symbol: "▷|\\⚡" },
-  { name: "Transistor (NPN)", symbol: "⋔" },
-  { name: "Ground", symbol: "⏚" },
-  { name: "AC Voltage Source", symbol: "∾" },
-  { name: "DC Voltage Source", symbol: "⎓" },
-  { name: "Switch (SPST)", symbol: "╱o" },
-  { name: "Fuse", symbol: "⏍" },
-  { name: "Transformer", symbol: "⊃(C)⊂" },
-  { name: "Operational Amplifier", symbol: "▷" },
-  { name: "Logic Gate (AND)", symbol: "D" }
+  { 
+    name: "Resistor", 
+    svg: '<path d="M10,40 h15 l5,-15 l10,30 l10,-30 l10,30 l10,-30 l10,30 l5,-15 h15" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
+  },
+  { 
+    name: "Capacitor", 
+    svg: '<path d="M30,10 v60 M90,10 v60 M10,40 h20 M90,40 h20" stroke="#101d32" stroke-width="4" fill="none"/>' 
+  },
+  { 
+    name: "Inductor", 
+    svg: '<path d="M10,40 h15 c0,-15 10,-15 15,0 c0,-15 10,-15 15,0 c0,-15 10,-15 15,0 c0,-15 10,-15 15,0 h15" stroke="#101d32" stroke-width="4" fill="none"/>' 
+  },
+  { 
+    name: "Diode", 
+    svg: '<path d="M10,40 h30 m40,0 h30 M40,20 v40 l40,-20 z M80,20 v40" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
+  },
+  { 
+    name: "Ground", 
+    svg: '<path d="M60,10 v30 M35,40 h50 M45,50 h30 M55,60 h10" stroke="#101d32" stroke-width="4" fill="none" stroke-linecap="round"/>' 
+  },
+  { 
+    name: "DC Voltage Source", 
+    svg: '<path d="M10,40 h35 M75,40 h35 M45,20 v40 M75,25 v30" stroke="#101d32" stroke-width="4" fill="none" stroke-linecap="round"/>' 
+  },
+  { 
+    name: "Switch (SPST)", 
+    svg: '<path d="M10,40 h25 l45,-30 M80,40 h30" stroke="#101d32" stroke-width="4" fill="none" stroke-linecap="round"/>' 
+  },
+  { 
+    name: "Fuse", 
+    svg: '<path d="M10,40 h25 v-15 h50 v30 h-50 v-15 M85,40 h25" stroke="#101d32" stroke-width="4" fill="none" stroke-linejoin="round"/>' 
+  },
+  { 
+    name: "Transformer", 
+    svg: '<path d="M10,40 h30 c0,-15 10,-15 15,0 c0,-15 10,-15 15,0 M65,40 h30 c0,-15 10,-15 15,0 c0,-15 10,-15 15,0" stroke="#101d32" stroke-width="4" fill="none"/>' 
+  }
 ];
-
 let currentSymbolAnswer = "";
 let symbolScore = 0;
 let symbolRound = 0;
@@ -471,8 +494,8 @@ function newSymbolRound() {
   let target = symbolDatabase[Math.floor(Math.random() * symbolDatabase.length)];
   currentSymbolAnswer = target.name;
   
-  // Display the symbol
-  symbolDisplay.textContent = target.symbol;
+// Display the vector symbol inside the SVG element
+  document.getElementById('symbolDisplaySVG').innerHTML = target.svg;
   symbolQuestion.textContent = "What component does this symbol represent?";
   
   // Pick 3 unique wrong answers
@@ -533,7 +556,7 @@ function endSymbolGame() {
   symbolGameIsActive = false;
   clearInterval(symbolGameInterval);
   symbolTimerDisplay.textContent = 'Time’s up!';
-  symbolDisplay.textContent = '🏁';
+  document.getElementById('symbolDisplaySVG').innerHTML = '<text x="60" y="45" font-size="16" text-anchor="middle" fill="var(--muted)" font-family="sans-serif">Game Over</text>';
   symbolOptions.innerHTML = '';
   symbolQuestion.textContent = 'Game Over! Final Score: ' + symbolScore;
   symbolFeedback.textContent = 'Great circuit diagram practice! Enter your score below.';
